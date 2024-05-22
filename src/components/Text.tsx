@@ -9,7 +9,7 @@ import { colors, TextSize, defaultFontFamily } from "../constants";
 import { withSpacing } from "../hocs";
 import { StylistTheme } from "../contexts";
 
-type StyledTextProps = DefaultTextProps & {
+type TextProps = DefaultTextProps & {
   bold?: boolean;
   xsmall?: boolean;
   medium?: boolean;
@@ -23,7 +23,7 @@ type StyledTextProps = DefaultTextProps & {
   brand?: boolean;
 };
 
-const Text = (props: StyledTextProps) => {
+const Text = (props: TextProps) => {
   const { brandColor, fontFamily, fontFamilyBold } = useContext(StylistTheme);
 
   let style: DefaultTextStyle = {

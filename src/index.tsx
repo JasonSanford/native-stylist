@@ -1,7 +1,10 @@
-export { Text, View } from "./components";
-export { StylistTheme } from "./contexts";
-export { TextSize } from "./constants";
+export {
+  Button,
+  Text,
+  TextInput,
+  View,
+  Image,
+  TouchableOpacity,
+} from "./components";
 
-export const sayHello = (name: string): string => {
-  return `Hello, ${name}!`;
-};
+export { StylistTheme } from "./contexts";
