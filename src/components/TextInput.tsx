@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import { TextInput, TextInputProps, TextStyle } from "react-native";
 
-import { StylistTheme } from "../contexts";
-import { colors, defaultFontFamily } from "../constants";
-import { useBoolean } from "../hooks";
+import { useBoolean, useColor, useFont } from "../hooks";
 import { withSpacing } from "../hocs";
 
 const StyledTextInput = (props: TextInputProps) => {
@@ -12,21 +9,22 @@ const StyledTextInput = (props: TextInputProps) => {
     setTrue: onFocus,
     setFalse: onBlur,
   } = useBoolean(false);
-  const { fontFamily } = useContext(StylistTheme);
+  const { fontFamily } = useFont();
+  const { brandColor } = useColor();
 
   const style: TextStyle = {
-    fontFamily: fontFamily || defaultFontFamily,
+    fontFamily,
     fontSize: 20,
     padding: 12,
-    color: colors.brandBase,
+    color: brandColor,
     backgroundColor: "#ffffff",
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: colors.brandBase,
+    borderColor: brandColor,
   };
 
   if (isFocused) {
-    // style.borderColor = colors.brandBase;'
+    style.borderColor = brandColor;
     style.borderWidth = 1.8;
   }
 

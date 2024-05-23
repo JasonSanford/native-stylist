@@ -14,3 +14,8 @@ export enum ButtonVariant {
   Success,
   Danger,
 }
+
+export enum ColorVariant {
+  Brand,
+  Accent,
+}

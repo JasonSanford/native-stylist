@@ -23,10 +23,6 @@ function withColors<T>(
       st.backgroundColor = colors.bgWhite;
     }
 
-    if (props.bgBrandBase) {
-      st.backgroundColor = colors.brandBase;
-    }
-
     if (props.bgGray) {
       st.backgroundColor = colors.bgGray;
     }

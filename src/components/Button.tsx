@@ -10,7 +10,7 @@ import {
 import Text from "./Text";
 import View from "./View";
 import { withSpacing } from "../hocs";
-import { colors } from "../constants";
+import { useColor } from "../hooks";
 import { ButtonVariant } from "../types";
 
 type ButtonProps = {
@@ -39,22 +39,45 @@ const Button = ({
   textBold,
 }: ButtonProps) => {
   const buttonVariant = variant || ButtonVariant.Flat;
+  const { brandColor, accentColor } = useColor();
 
   let [containerStyle, defaultTextStyle] = {
-    [ButtonVariant.Flat]: [styles.containerFlat, styles.textFlat],
-    [ButtonVariant.Primary]: [styles.containerPrimary, styles.textPrimary],
-    [ButtonVariant.Accent]: [styles.containerAccent, styles.textPrimary],
-    [ButtonVariant.Secondary]: [
-      styles.containerSecondary,
-      styles.textSecondary,
+    [ButtonVariant.Flat]: [{}, { ...styles.textFlat, color: brandColor }],
+    [ButtonVariant.Primary]: [
+      { ...styles.containerRectangular, backgroundColor: brandColor },
+      styles.textPrimary,
     ],
-    [ButtonVariant.Gray]: [styles.containerGray, styles.textPrimary],
-    [ButtonVariant.Success]: [styles.containerSuccess, styles.textPrimary],
-    [ButtonVariant.Danger]: [styles.containerDanger, styles.textPrimary],
+    [ButtonVariant.Accent]: [
+      { ...styles.containerRectangular, backgroundColor: accentColor },
+      styles.textPrimary,
+    ],
+    [ButtonVariant.Secondary]: [
+      {
+        ...styles.containerRectangular,
+        ...styles.containerSecondary,
+        borderColor: brandColor,
+      },
+      { ...styles.textSecondary, color: brandColor },
+    ],
+    [ButtonVariant.Gray]: [
+      { ...styles.containerRectangular, ...styles.containerGray },
+      styles.textPrimary,
+    ],
+    [ButtonVariant.Success]: [
+      { ...styles.containerRectangular, ...styles.containerSuccess },
+      styles.textPrimary,
+    ],
+    [ButtonVariant.Danger]: [
+      { ...styles.containerRectangular, ...styles.containerDanger },
+      styles.textPrimary,
+    ],
   }[buttonVariant];
 
   if (disabled) {
-    containerStyle = styles.containerDisabled;
+    containerStyle = {
+      ...styles.containerRectangular,
+      ...styles.containerDisabled,
+    };
     defaultTextStyle = styles.textDisabled;
   }
 
@@ -82,7 +105,7 @@ const Button = ({
   const renderContent = () => {
     if (loading) {
       const activityIndicatorColor =
-        buttonVariant === ButtonVariant.Primary ? "#fff" : colors.brandBase;
+        buttonVariant === ButtonVariant.Primary ? "#fff" : brandColor;
       return <ActivityIndicator size={20} color={activityIndicatorColor} />;
     }
 
@@ -122,47 +145,34 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  containerFlat: {},
+  containerRectangular: {
+    borderRadius: 6,
+  },
 
   containerDisabled: {
+    // TODO: Calculate this
     backgroundColor: "#6d9ebd", // A lighter shade of the brandBase color
-    borderRadius: 6,
   },
 
   textDisabled: {
     color: "#ffffff",
   },
 
-  containerPrimary: {
-    backgroundColor: colors.brandBase,
-    borderRadius: 6,
-  },
-
-  containerAccent: {
-    backgroundColor: colors.brandAccent,
-    borderRadius: 6,
-  },
-
   containerGray: {
     backgroundColor: "#808080",
-    borderRadius: 6,
   },
 
   containerSuccess: {
     backgroundColor: "#008000",
-    borderRadius: 6,
   },
 
   containerDanger: {
     backgroundColor: "#8B0000",
-    borderRadius: 6,
   },
 
   containerSecondary: {
     backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: colors.brandBase,
-    borderRadius: 6,
   },
 
   text: {
@@ -170,7 +180,6 @@ const styles = StyleSheet.create({
   },
 
   textFlat: {
-    color: colors.brandBase,
     fontSize: 18,
   },
 
@@ -178,9 +187,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 
-  textSecondary: {
-    color: colors.brandBase,
-  },
+  textSecondary: {},
 });
 
 export default withSpacing(Button);

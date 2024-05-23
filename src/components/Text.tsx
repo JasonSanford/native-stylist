@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import {
   Text as DefaultText,
   TextStyle as DefaultTextStyle,
@@ -7,7 +6,7 @@ import {
 
 import { colors, TextSize, defaultFontFamily } from "../constants";
 import { withSpacing } from "../hocs";
-import { StylistTheme } from "../contexts";
+import { useColor, useFont } from "../hooks";
 
 type TextProps = DefaultTextProps & {
   bold?: boolean;
@@ -24,7 +23,8 @@ type TextProps = DefaultTextProps & {
 };
 
 const Text = (props: TextProps) => {
-  const { brandColor, fontFamily, fontFamilyBold } = useContext(StylistTheme);
+  const { fontFamily, fontFamilyBold } = useFont();
+  const { brandColor } = useColor();
 
   let style: DefaultTextStyle = {
     fontFamily: fontFamily || defaultFontFamily,
