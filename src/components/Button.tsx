@@ -150,8 +150,7 @@ const styles = StyleSheet.create({
   },
 
   containerDisabled: {
-    // TODO: Calculate this
-    backgroundColor: "#6d9ebd", // A lighter shade of the brandBase color
+    backgroundColor: "#D3D3D3",
   },
 
   textDisabled: {
