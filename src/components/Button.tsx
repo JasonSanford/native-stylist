@@ -11,16 +11,7 @@ import Text from "./Text";
 import View from "./View";
 import { withSpacing } from "../hocs";
 import { colors } from "../constants";
-
-export enum ButtonVariant {
-  Flat,
-  Primary,
-  Secondary,
-  Accent,
-  Gray,
-  Success,
-  Danger,
-}
+import { ButtonVariant } from "../types";
 
 type ButtonProps = {
   title: string;

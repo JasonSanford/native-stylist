@@ -7,6 +7,6 @@ export {
   TouchableOpacity,
 } from "./components";
 
-export { ButtonVariant } from "./components/Button";
+export { ButtonVariant } from "./types";
 
 export { StylistTheme } from "./contexts";
