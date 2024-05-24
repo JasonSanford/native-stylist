@@ -2,7 +2,6 @@ export const colors = {
   brandBase: "#10202A",
   brandAccent: "#2D86E0",
   bgGray: "#f2f2f2",
-  bgNav: "#d8dbe8",
   bgWhite: "#ffffff",
 };
 
