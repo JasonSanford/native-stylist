@@ -29,6 +29,7 @@ type WithLayoutProps = {
   br2?: boolean;
   br3?: boolean;
   br4?: boolean;
+  overflowHidden?: boolean;
 };
 
 type WithStyle = {
@@ -135,6 +136,10 @@ function withLayout<T>(
 
     if (props.br4) {
       st.borderRadius = 32;
+    }
+
+    if (props.overflowHidden) {
+      st.overflow = "hidden";
     }
     // The typing isn't quite right for this, but it works.
     // @ts-ignore
