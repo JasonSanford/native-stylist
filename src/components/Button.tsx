@@ -112,10 +112,7 @@ const Button = ({
     return (
       <>
         {icon && <View mr1>{icon}</View>}
-        <Text
-          bold={textBold || buttonVariant === ButtonVariant.Primary}
-          style={combinedTextStyle}
-        >
+        <Text bold={textBold} style={combinedTextStyle}>
           {title}
         </Text>
       </>
