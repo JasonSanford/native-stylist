@@ -16,7 +16,7 @@ const StyledTextInput = (props: TextInputProps) => {
     fontFamily,
     fontSize: 20,
     padding: 12,
-    color: brandColor,
+    color: "#333",
     backgroundColor: "#ffffff",
     borderRadius: 6,
     borderWidth: 1,
