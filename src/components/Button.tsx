@@ -17,6 +17,7 @@ type ButtonProps = {
   title: string;
   onPress: () => void;
   icon?: JSX.Element;
+  iconRight?: JSX.Element;
   variant?: ButtonVariant;
   style?: StyleProp<ViewStyle>;
   textStyle?: TextStyle;
@@ -30,6 +31,7 @@ const Button = ({
   title,
   onPress,
   icon,
+  iconRight,
   variant,
   style,
   textStyle,
@@ -115,6 +117,7 @@ const Button = ({
         <Text bold={textBold} style={combinedTextStyle}>
           {title}
         </Text>
+        {iconRight && <View ml1>{iconRight}</View>}
       </>
     );
   };
