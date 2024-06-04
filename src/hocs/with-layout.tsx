@@ -10,11 +10,14 @@ type WithLayoutProps = {
   flex1?: boolean;
   flexRow?: boolean;
   flexColumn?: boolean;
+  alignStart?: boolean;
   alignCenter?: boolean;
+  alignEnd?: boolean;
+  justifyStart?: boolean;
   justifyCenter?: boolean;
-  selfCenter?: boolean;
   justifyBetween?: boolean;
   justifyEnd?: boolean;
+  selfCenter?: boolean;
   pinToTop?: boolean;
   pinToBottom?: boolean;
   pinToLeft?: boolean;
@@ -62,20 +65,32 @@ function withLayout<T>(
       st.flexDirection = "column";
     }
 
+    if (props.alignStart) {
+      st.alignItems = "flex-start";
+    }
+
     if (props.alignCenter) {
       st.alignItems = "center";
+    }
+
+    if (props.alignEnd) {
+      st.alignItems = "flex-end";
+    }
+
+    if (props.justifyStart) {
+      st.justifyContent = "flex-start";
     }
 
     if (props.justifyCenter) {
       st.justifyContent = "center";
     }
 
-    if (props.justifyBetween) {
-      st.justifyContent = "space-between";
-    }
-
     if (props.justifyEnd) {
       st.justifyContent = "flex-end";
+    }
+
+    if (props.justifyBetween) {
+      st.justifyContent = "space-between";
     }
 
     if (props.selfCenter) {
