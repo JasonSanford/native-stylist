@@ -14,6 +14,7 @@ type TextProps = DefaultTextProps & {
   medium?: boolean;
   large?: boolean;
   xlarge?: boolean;
+  xxlarge?: boolean;
   light?: boolean;
   lightish?: boolean;
   shadow?: boolean;
@@ -56,6 +57,10 @@ const Text = (props: TextProps) => {
   if (props.xlarge) {
     style.fontSize = TextSize.XLarge;
     style.lineHeight = TextSize.XLarge + 2;
+  }
+
+  if (props.xxlarge) {
+    style.fontSize = TextSize.XXLarge;
   }
 
   if (props.light) {

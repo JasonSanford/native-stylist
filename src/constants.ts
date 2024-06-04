@@ -11,6 +11,7 @@ export enum TextSize {
   Medium = 20,
   Large = 24,
   XLarge = 32,
+  XXLarge = 48,
 }
 
 export const defaultFontFamily = "System";
