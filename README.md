@@ -4,6 +4,8 @@
 
 Native Stylist is an npm package designed to streamline the process of styling React Native components. It provides a set of utilities to manage styles more efficiently and consistently.
 
+This was inspired by, but is way less powerful than, [Tailwind CSS](https://tailwindcss.com/) + [NativeWind](https://www.nativewind.dev/).
+
 ## Table of Contents
 
 - [Installation](#installation)
