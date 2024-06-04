@@ -76,11 +76,18 @@ const Button = ({
   }[buttonVariant];
 
   if (disabled) {
-    containerStyle = {
-      ...styles.containerRectangular,
-      ...styles.containerDisabled,
-    };
-    defaultTextStyle = styles.textDisabled;
+    if (buttonVariant === ButtonVariant.Primary) {
+      containerStyle = {
+        ...styles.containerRectangular,
+        ...styles.containerDisabled,
+      };
+      defaultTextStyle = styles.textDisabled;
+    } else {
+      defaultTextStyle = {
+        ...defaultTextStyle,
+        color: "#808080",
+      };
+    }
   }
 
   if (slim) {
