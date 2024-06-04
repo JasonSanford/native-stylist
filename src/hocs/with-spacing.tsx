@@ -13,9 +13,7 @@ enum Direction {
 
 type WithMarginProps = {
   mHalf?: boolean;
-  /** One unit of margin */
   m1?: boolean;
-  /** Two units of margin */
   m2?: boolean;
   m3?: boolean;
   m4?: boolean;

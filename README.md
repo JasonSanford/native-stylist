@@ -60,6 +60,8 @@ export default function App() {
 
 The `View` component exported from Native Stylist is an enhanced version of the standard React Native `View` component. It supports additional boolean properties for margins and paddings, making it easier to apply spacing.
 
+The spacing unit is 8. In the future I'd like to allow for changing this, but for now it's set.
+
 #### Margin Properties
 
 - `m1` to `m8`: Sets margin of 1 to 8 units on all sides.
@@ -67,6 +69,7 @@ The `View` component exported from Native Stylist is an enhanced version of the 
 - `mr1` to `mr8`: Sets margin right of 1 to 8 units.
 - `mb1` to `mb8`: Sets margin bottom of 1 to 8 units.
 - `ml1` to `ml8`: Sets margin left of 1 to 8 units.
+- `mHalf`, `mtHalf`, `mrHalf`, `mbHalf`, `mlHalf`: Sets margin on one or all sides to a half unit
 
 #### Padding Properties
 
@@ -75,11 +78,52 @@ The `View` component exported from Native Stylist is an enhanced version of the 
 - `pr1` to `pr8`: Sets padding right of 1 to 8 units.
 - `pb1` to `pb8`: Sets padding bottom of 1 to 8 units.
 - `pl1` to `pl8`: Sets padding left of 1 to 8 units.
+- `pHalf`, `ptHalf`, `prHalf`, `pbHalf`, `plHalf`: Sets padding on one or all sides to a half unit
+
+#### Gap Properties
+
+- `gap1` to `gap8`: Sets gap of 1 to 8 units between children.
+
+#### Grow/Shrink Properties
+
+- `grow1`: Sets `{ flexGrow: 1 }`
+- `shrink1`: Sets `{ flexShrink: 1 }`
 
 #### Layout
 
+- `absolute`: Sets `{ position: 'absolute' }`
+- `relative`: Sets `{ position: 'relative' }`
+- `pinToTop`: Sets `{ top: 0 }`
+- `pinToRight`: Sets `{ right: 0 }`
+- `pinToBottom`: Sets `{ bottom: 0 }`
+- `pinToLeft`: Sets `{ left: 0 }`
+- `fullWidth`: Sets `{ width: '100%' }`
+- `halfWidth`: Sets `{ width: '50%' }`
 - `flex1`: Sets `{ flex: 1 }`
 - `flexRow`: Sets `{ flexDirection: 'row' }`
+- `flexColumn`: Sets `{ flexDirection: 'column' }`
+- `justifyStart`: Sets `{ justifyContent: 'flex-start' }`
+- `justifyCenter`: Sets `{ justifyContent: 'center' }`
+- `justifyEnd`: Sets `{ justifyContent: 'flex-end' }`
+- `justifyBetween`: Sets `{ justifyContent: 'space-between' }`
+- `alignStart`: Sets `{ alignItems: 'flex-start' }`
+- `alignCenter`: Sets `{ alignItems: 'center' }`
+- `alignEnd`: Sets `{ alignItems: 'flex-end' }`
+- `z1` to `z4`: Sets `zIndex` to 1 to 4
+- `br1` to `br4`: Sets `borderRadius` to 14, 8, 16, and 32 units
+- `overflowHidden`: Sets `{ overflow: 'hidden' }`
+
+#### Shadow Properties
+
+- `shadow`: Sets a shadow with a default configuration
+- `shadowUp`: Sets a shadow that goes up, good for using on a fix bottom bar
+
+#### Background Color Properties
+
+(This needs to be improved)
+
+- `bgWhite`: Sets background color to white
+- `bgGray`: Sets background color to gray
 
 ### Example Usage
 
