@@ -9,7 +9,7 @@ Native Stylist is an npm package designed to streamline the process of styling R
 - [Installation](#installation)
 - [API](#api)
 - [Usage](#usage)
-- [Examples](#examples)
+- [Fonts and Colors](#fonts-and-colors)
 
 ## Installation
 
@@ -210,7 +210,26 @@ export default function App() {
 
 ### Fonts and Colors
 
+Instead of using the default colors and fonts, you can customize them by using the `StylistTheme` context provider. This will allow you to set your own colors and fonts in once place. You'll need to wrap your app with this provider
 
-```javascript
-// TODO: This
+```JSX
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { Text, View, StylistTheme } from 'native-stylist';
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <StylistTheme.Provider
+        value={{
+          fontFamily: 'maven-pro',
+          fontFamilyBold: 'maven-pro-black',
+          brandColor: colors.green,
+        }}
+      >
+        <Text>This text and any further text nested inside the provider will have its `fontFamily` set to `maven-pro` and bold `fontFamily` set to `maven-pro-black.</Text>
+        <Text brand>This text color will match that passed in the `brandColor` valu ein the provider.</Text>
+      </StylistTheme>
+    </SafeAreaProvider>
+  );
 ```
