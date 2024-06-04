@@ -1,16 +1,14 @@
 # Native Stylist
 
 [![npm version](https://img.shields.io/npm/v/native-stylist)](https://www.npmjs.com/package/native-stylist)
-[![Build Status](https://img.shields.io/travis/yourusername/native-stylist/master)](https://travis-ci.org/yourusername/native-stylist)
-[![License](https://img.shields.io/npm/l/native-stylist)](https://opensource.org/licenses/MIT)
 
 Native Stylist is an npm package designed to streamline the process of styling React Native components. It provides a set of utilities to manage styles more efficiently and consistently.
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
 - [API](#api)
+- [Usage](#usage)
 - [Examples](#examples)
 
 ## Installation
@@ -25,33 +23,6 @@ or
 
 ```sh
 yarn add native-stylist
-```
-
-## Usage
-
-Here is a basic example of how to use Native Stylist in your React Native project:
-
-```javascript
-import { View, Text } from 'native-stylist';
-
-export default function App() {
-  return (
-    <>
-      <View p2>
-        <Text xlarge bold>Hello, world!</Text>
-        <Text medium lightish>How are you doing?</Text>
-      </View>
-      <View flexRow justifyBetween>
-        <Text>
-          I'm left!
-        </Text>
-        <Text>
-          I'm right!
-        </Text>
-      </View>
-    </>
-  );
-}
 ```
 
 ## API
@@ -125,19 +96,115 @@ The spacing unit is 8. In the future I'd like to allow for changing this, but fo
 - `bgWhite`: Sets background color to white
 - `bgGray`: Sets background color to gray
 
-### Example Usage
+### `<Text />` Component
 
-```javascript
-import React from 'react';
-import { View, Text } from 'native-stylist';
+The `Text` component exported from Native Stylist is an enhanced version of the standard React Native `Text` component. It supports additional boolean properties for margins and paddings, making it easier to apply spacing.
+
+The spacing unit is 8. In the future I'd like to allow for changing this, but for now it's set.
+
+#### Color Properties
+
+- `light`: Sets `{ color: '#ffffff' }`
+- `lightish`: Sets `{ color: '#757575' }`
+- `error`: Sets `{ color: '#B30000' }`
+- `brand`: Sets the color to the brand color (see ###Customization)
+
+#### Size and Weight Properties
+
+- `bold`: Sets `{ fontWeight: 'bold' }` or `{ fontFamily: 'your-specified-bold-font`} if set.
+- `small` Sets `{ fontSize: 16 }` - This is the default size
+- `xsmall` Sets `{ fontSize: 14 }`
+- `medium` Sets `{ fontSize: 20 }`
+- `large` Sets `{ fontSize: 24 }`
+- `xlarge` Sets `{ fontSize: 32 }`
+- `xxlarge` Sets `{ fontSize: 48 }`
+
+#### Other Properties
+
+- `shadow`: Sets a shadow with a default configuration
+- `center`: Sets `{ textAlign: 'center' }`
+
+
+#### Margin Properties
+
+- `m1` to `m8`: Sets margin of 1 to 8 units on all sides.
+- `mt1` to `mt8`: Sets margin top of 1 to 8 units.
+- `mr1` to `mr8`: Sets margin right of 1 to 8 units.
+- `mb1` to `mb8`: Sets margin bottom of 1 to 8 units.
+- `ml1` to `ml8`: Sets margin left of 1 to 8 units.
+- `mHalf`, `mtHalf`, `mrHalf`, `mbHalf`, `mlHalf`: Sets margin on one or all sides to a half unit
+
+#### Padding Properties
+
+- `p1` to `p8`: Sets padding of 1 to 8 units on all sides.
+- `pt1` to `pt8`: Sets padding top of 1 to 8 units.
+- `pr1` to `pr8`: Sets padding right of 1 to 8 units.
+- `pb1` to `pb8`: Sets padding bottom of 1 to 8 units.
+- `pl1` to `pl8`: Sets padding left of 1 to 8 units.
+- `pHalf`, `ptHalf`, `prHalf`, `pbHalf`, `plHalf`: Sets padding on one or all sides to a half unit
+
+
+## Usage
+
+```JSX
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { Text, View } from 'native-stylist';
 
 export default function App() {
   return (
-    <View>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <Text ml2 xlarge bold>
+          This is a Title
+        </Text>
+        <Text ml2 medium lightish>
+          Maybe a subtitle here
+        </Text>
+        <View pt4 pl2 pr2 flexRow justifyBetween>
+          <Text>I am on the left</Text>
+          <Text>right over here</Text>
+        </View>
+
+        <View mt4 flexRow gap1 style={{ height: 100 }}>
+          <View
+            p1
+            flex1
+            alignStart
+            justifyStart
+            style={{ backgroundColor: 'red', alignItems: 'flex-start' }}>
+            <Text light>Red</Text>
+          </View>
+          <View
+            p1
+            flex1
+            alignCenter
+            justifyCenter
+            style={{ backgroundColor: 'green' }}>
+            <Text light>Green</Text>
+          </View>
+          <View
+            p1
+            flex1
+            alignEnd
+            justifyEnd
+            style={{ backgroundColor: 'blue' }}>
+            <Text light>Blue</Text>
+          </View>
+        </View>
+
+        <View mt4 relative style={{ height: 200, backgroundColor: '#ff7800' }}>
+          <View m2 absolute z1 pinToTop pinToRight bgWhite shadow br2 p1>
+            <Text bold>X</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 ```
+
+<image width="350px" src="./example1.png" style="margin: 0 auto;" />
 
 ## Examples
 
