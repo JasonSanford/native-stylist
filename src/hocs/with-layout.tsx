@@ -16,6 +16,7 @@ type WithLayoutProps = {
   justifyStart?: boolean;
   justifyCenter?: boolean;
   justifyBetween?: boolean;
+  justifyAround?: boolean;
   justifyEnd?: boolean;
   selfCenter?: boolean;
   pinToTop?: boolean;
@@ -91,6 +92,10 @@ function withLayout<T>(
 
     if (props.justifyBetween) {
       st.justifyContent = "space-between";
+    }
+
+    if (props.justifyAround) {
+      st.justifyContent = "space-around";
     }
 
     if (props.selfCenter) {

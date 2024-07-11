@@ -79,6 +79,7 @@ The spacing unit is 8. In the future I'd like to allow for changing this, but fo
 - `justifyCenter`: Sets `{ justifyContent: 'center' }`
 - `justifyEnd`: Sets `{ justifyContent: 'flex-end' }`
 - `justifyBetween`: Sets `{ justifyContent: 'space-between' }`
+- `justifyAround`: Sets `{ justifyContent: 'space-around' }`
 - `alignStart`: Sets `{ alignItems: 'flex-start' }`
 - `alignCenter`: Sets `{ alignItems: 'center' }`
 - `alignEnd`: Sets `{ alignItems: 'flex-end' }`
