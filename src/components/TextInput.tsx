@@ -19,8 +19,8 @@ const StyledTextInput = (props: TextInputProps) => {
     color: "#333",
     backgroundColor: "#ffffff",
     borderRadius: 6,
-    borderWidth: 1,
-    borderColor: brandColor,
+    borderWidth: 1.8,
+    borderColor: "#aaa",
   };
 
   if (isFocused) {
