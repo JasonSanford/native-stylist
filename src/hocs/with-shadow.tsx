@@ -27,12 +27,12 @@ function withShadow<T>(
       if (Platform.OS === "android") {
         // Why don't these work?
         // st.zIndex = 1;
-        // st.elevation = 4;
+        st.elevation = 5;
         // st.backgroundColor = "#ffffff";
 
         // Just use a simple border for now
-        st.borderColor = "#757575";
-        st.borderWidth = StyleSheet.hairlineWidth;
+        // st.borderColor = "#757575";
+        // st.borderWidth = StyleSheet.hairlineWidth;
       }
     }
 
