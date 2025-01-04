@@ -21,6 +21,9 @@ type TextProps = DefaultTextProps & {
   center?: boolean;
   error?: boolean;
   brand?: boolean;
+  underline?: boolean;
+  strikeThrough?: boolean;
+  italic?: boolean;
 };
 
 const Text = (props: TextProps) => {
@@ -39,6 +42,18 @@ const Text = (props: TextProps) => {
     } else {
       style.fontWeight = "bold";
     }
+  }
+
+  if (props.underline) {
+    style.textDecorationLine = "underline";
+  }
+
+  if (props.strikeThrough) {
+    style.textDecorationLine = "line-through";
+  }
+
+  if (props.italic) {
+    style.fontStyle = "italic";
   }
 
   if (props.xsmall) {

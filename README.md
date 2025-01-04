@@ -112,7 +112,7 @@ The spacing unit is 8. In the future I'd like to allow for changing this, but fo
 - `error`: Sets `{ color: '#B30000' }`
 - `brand`: Sets the color to the brand color (see ###Customization)
 
-#### Size and Weight Properties
+#### Size, Weight, and Style Properties
 
 - `bold`: Sets `{ fontWeight: 'bold' }` or `{ fontFamily: 'your-specified-bold-font`} if set.
 - `small` Sets `{ fontSize: 16 }` - This is the default size
@@ -121,6 +121,9 @@ The spacing unit is 8. In the future I'd like to allow for changing this, but fo
 - `large` Sets `{ fontSize: 24 }`
 - `xlarge` Sets `{ fontSize: 32 }`
 - `xxlarge` Sets `{ fontSize: 48 }`
+- `underline`: Sets `{ textDecorationLine: 'underline' }`
+- `strikeThrough`: Sets `{ textDecorationLine: 'line-through' }`
+- `italic`: Sets `{ fontStyle: 'italic' }`
 
 #### Other Properties
 
