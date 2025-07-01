@@ -1,4 +1,4 @@
-import { ComponentType, FC, PropsWithChildren } from "react";
+import { ComponentType, forwardRef, PropsWithChildren } from "react";
 import { ViewStyle, TextStyle } from "react-native";
 
 const DEFAULT_SPACING = 8;
@@ -185,31 +185,25 @@ const spacingMapping = {
   gap8: DEFAULT_SPACING * 8,
 };
 
-type WithStyle = {
-  style?: ViewStyle | TextStyle;
-};
-
 type SpacingKey = keyof typeof spacingMapping;
 
-function withSpacing<T>(
-  Component: ComponentType<T>
-): FC<
-  PropsWithChildren<
-    T &
-      WithMarginProps &
-      WithPaddingProps &
-      WithGrowShrinkProps &
-      WithGapProps &
-      WithStyle
-  >
-> {
-  return ({ style, ...props }) => {
+function withSpacing<T>(Component: ComponentType<T>) {
+  return forwardRef<
+    any,
+    PropsWithChildren<
+      T &
+        WithMarginProps &
+        WithPaddingProps &
+        WithGrowShrinkProps &
+        WithGapProps & { style?: any }
+    >
+  >(({ style, children, ...props }, ref) => {
     const st: ViewStyle | TextStyle = { ...style };
 
     Object.entries(props).forEach(([key, value]) => {
       if (value && spacingMapping.hasOwnProperty(key)) {
         if (key.startsWith("gap")) {
-          st.gap = spacingMapping[key as SpacingKey];
+          (st as ViewStyle).gap = spacingMapping[key as SpacingKey];
           return;
         }
         const property = key.startsWith("m") ? "margin" : "padding";
@@ -233,16 +227,19 @@ function withSpacing<T>(
     });
 
     if (props.grow1) {
-      st.flexGrow = 1;
+      (st as ViewStyle).flexGrow = 1;
     }
 
     if (props.shrink1) {
-      st.flexShrink = 1;
+      (st as ViewStyle).flexShrink = 1;
     }
-    // The typing isn't quite right for this, but it works.
-    // @ts-ignore
-    return <Component style={st} {...props} />;
-  };
+
+    return (
+      <Component ref={ref} style={st} {...(props as T)}>
+        {children}
+      </Component>
+    );
+  });
 }
 
 export default withSpacing;

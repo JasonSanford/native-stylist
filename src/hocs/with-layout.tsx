@@ -1,4 +1,4 @@
-import { ComponentType, FC, PropsWithChildren } from "react";
+import { ComponentType, forwardRef, PropsWithChildren } from "react";
 import { ViewStyle } from "react-native";
 
 type WithPositionProps = {
@@ -36,14 +36,11 @@ type WithLayoutProps = {
   overflowHidden?: boolean;
 };
 
-type WithStyle = {
-  style?: ViewStyle;
-};
-
-function withLayout<T>(
-  Component: ComponentType<T>
-): FC<PropsWithChildren<T & WithPositionProps & WithLayoutProps & WithStyle>> {
-  return ({ style, ...props }) => {
+function withLayout<T>(Component: ComponentType<T>) {
+  return forwardRef<
+    any,
+    PropsWithChildren<T & WithPositionProps & WithLayoutProps & { style?: any }>
+  >(({ style, children, ...props }, ref) => {
     const st: ViewStyle = { ...style };
 
     if (props.absolute) {
@@ -161,10 +158,13 @@ function withLayout<T>(
     if (props.overflowHidden) {
       st.overflow = "hidden";
     }
-    // The typing isn't quite right for this, but it works.
-    // @ts-ignore
-    return <Component style={st} {...props} />;
-  };
+
+    return (
+      <Component ref={ref} style={st} {...(props as T)}>
+        {children}
+      </Component>
+    );
+  });
 }
 
 export default withLayout;

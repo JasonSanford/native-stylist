@@ -1,1 +1,1 @@
-export { default as StylistTheme } from "./stylist-theme";
+export { default as StylistTheme, useStylistTheme } from "./stylist-theme";

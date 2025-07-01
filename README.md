@@ -6,6 +6,16 @@ Native Stylist is an npm package designed to streamline the process of styling R
 
 This was inspired by, but is way less powerful than, [Tailwind CSS](https://tailwindcss.com/) + [NativeWind](https://www.nativewind.dev/).
 
+## React 19 Compatibility
+
+This library is now compatible with React 19! The following changes were made to ensure compatibility:
+
+- Updated TypeScript configuration to use `"jsx": "react-jsx"`
+- Updated React types to `@types/react": "^19.0.0"`
+- Refactored HOCs to use `forwardRef` instead of `FC<PropsWithChildren<...>>`
+- Improved context typing with proper default values
+- Added proper error handling for context usage
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -26,6 +36,12 @@ or
 ```sh
 yarn add native-stylist
 ```
+
+## Peer Dependencies
+
+This library requires:
+- React >= 18.0.0
+- React Native >= 0.70.0
 
 ## API
 
@@ -239,3 +255,87 @@ export default function App() {
     </SafeAreaProvider>
   );
 ```
+
+### Setup Theme Provider
+
+```tsx
+import { StylistTheme } from 'native-stylist';
+
+const theme = {
+  brandColor: '#007AFF',
+  accentColor: '#FF3B30',
+  fontFamily: 'System',
+  fontFamilyBold: 'System-Bold',
+};
+
+function App() {
+  return (
+    <StylistTheme.Provider value={theme}>
+      {/* Your app components */}
+    </StylistTheme.Provider>
+  );
+}
+```
+
+### Using Components
+
+```tsx
+import { View, Text, Button } from 'native-stylist';
+
+function MyComponent() {
+  return (
+    <View flex1 p2>
+      <Text large bold>Hello World</Text>
+      <Button
+        title="Press Me"
+        variant={ButtonVariant.Primary}
+        onPress={() => console.log('Pressed!')}
+      />
+    </View>
+  );
+}
+```
+
+### Available Components
+
+- `View` - Enhanced View with spacing, layout, shadow, and color props
+- `Text` - Enhanced Text with typography and styling props
+- `Button` - Styled button with variants
+- `TextInput` - Enhanced TextInput
+- `Image` - Enhanced Image
+- `TouchableOpacity` - Enhanced TouchableOpacity
+
+### Spacing Props
+
+All components support spacing props:
+- `m1`, `m2`, `m3`, `m4`, `m6`, `m8` - margin
+- `p1`, `p2`, `p3`, `p4`, `p6`, `p8` - padding
+- `mt1`, `mb1`, `ml1`, `mr1` - directional margin
+- `pt1`, `pb1`, `pl1`, `pr1` - directional padding
+- `gap1`, `gap2`, `gap3`, `gap4`, `gap6`, `gap8` - gap
+
+### Layout Props
+
+- `flex1`, `flexRow`, `flexColumn`
+- `alignStart`, `alignCenter`, `alignEnd`
+- `justifyStart`, `justifyCenter`, `justifyBetween`, `justifyAround`, `justifyEnd`
+- `fullWidth`, `halfWidth`
+- `br1`, `br2`, `br3`, `br4` - border radius
+
+### Button Variants
+
+- `ButtonVariant.Flat`
+- `ButtonVariant.Primary`
+- `ButtonVariant.Secondary`
+- `ButtonVariant.Accent`
+- `ButtonVariant.Gray`
+- `ButtonVariant.Success`
+- `ButtonVariant.Danger`
+
+## Migration from React 18
+
+If you're upgrading from React 18, no code changes are required. The library maintains backward compatibility while adding React 19 support.
+
+## TypeScript
+
+This library is written in TypeScript and provides full type safety for all props and components.

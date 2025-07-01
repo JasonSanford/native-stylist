@@ -1,10 +1,8 @@
-import { useContext } from "react";
-
 import { colors } from "../constants";
-import { StylistTheme } from "../contexts";
+import { useStylistTheme } from "../contexts";
 
 const useColor = () => {
-  const { brandColor, accentColor } = useContext(StylistTheme);
+  const { brandColor, accentColor } = useStylistTheme();
 
   return {
     brandColor: brandColor || colors.brandBase,
