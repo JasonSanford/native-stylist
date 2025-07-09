@@ -1,4 +1,4 @@
-import { ComponentType, forwardRef, PropsWithChildren } from "react";
+import { ComponentType, FC, PropsWithChildren } from "react";
 import { ViewStyle } from "react-native";
 
 import { colors } from "../constants";
@@ -9,11 +9,14 @@ type WithColorsProps = {
   bgGray?: boolean;
 };
 
-function withColors<T>(Component: ComponentType<T>) {
-  return forwardRef<
-    any,
-    PropsWithChildren<T & WithColorsProps & { style?: any }>
-  >(({ style, children, ...props }, ref) => {
+type WithStyle = {
+  style?: ViewStyle;
+};
+
+function withColors<T>(
+  Component: ComponentType<T>
+): FC<PropsWithChildren<T & WithColorsProps & WithStyle>> {
+  return ({ style, ...props }) => {
     const st: ViewStyle = { ...style };
 
     if (props.bgWhite) {
@@ -24,12 +27,10 @@ function withColors<T>(Component: ComponentType<T>) {
       st.backgroundColor = colors.bgGray;
     }
 
-    return (
-      <Component ref={ref} style={st} {...(props as T)}>
-        {children}
-      </Component>
-    );
-  });
+    // The typing isn't quite right for this, but it works.
+    // @ts-ignore
+    return <Component style={st} {...props} />;
+  };
 }
 
 export default withColors;

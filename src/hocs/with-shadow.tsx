@@ -1,4 +1,4 @@
-import { ComponentType, forwardRef, PropsWithChildren } from "react";
+import { ComponentType, FC, PropsWithChildren } from "react";
 import { ViewStyle, Platform, StyleSheet } from "react-native";
 
 type WithShadowProps = {
@@ -6,11 +6,14 @@ type WithShadowProps = {
   shadowUp?: boolean;
 };
 
-function withShadow<T>(Component: ComponentType<T>) {
-  return forwardRef<
-    any,
-    PropsWithChildren<T & WithShadowProps & { style?: any }>
-  >(({ style, children, ...props }, ref) => {
+type WithStyle = {
+  style?: ViewStyle;
+};
+
+function withShadow<T>(
+  Component: ComponentType<T>
+): FC<PropsWithChildren<T & WithShadowProps & WithStyle>> {
+  return ({ style, ...props }) => {
     const st: ViewStyle = { ...style };
 
     if (props.shadow) {
@@ -42,12 +45,10 @@ function withShadow<T>(Component: ComponentType<T>) {
       }
     }
 
-    return (
-      <Component ref={ref} style={st} {...(props as T)}>
-        {children}
-      </Component>
-    );
-  });
+    // The typing isn't quite right for this, but it works.
+    // @ts-ignore
+    return <Component style={st} {...props} />;
+  };
 }
 
 export default withShadow;

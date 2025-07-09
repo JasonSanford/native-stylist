@@ -26,7 +26,7 @@ type TextProps = DefaultTextProps & {
   italic?: boolean;
 };
 
-const TextComponent = (props: TextProps) => {
+const Text = (props: TextProps) => {
   const { fontFamily, fontFamilyBold } = useFont();
   const { brandColor } = useColor();
 
@@ -107,7 +107,4 @@ const TextComponent = (props: TextProps) => {
   return <DefaultText {...props} style={[style, props.style]} />;
 };
 
-// Create a wrapper component that can be enhanced with HOCs
-const TextWrapper = (props: any) => <TextComponent {...props} />;
-
-export default withSpacing(TextWrapper);
+export default withSpacing(Text);

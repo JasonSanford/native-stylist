@@ -27,7 +27,7 @@ type ButtonProps = {
   textBold?: boolean;
 };
 
-const ButtonComponent = ({
+const Button = ({
   title,
   onPress,
   icon,
@@ -196,7 +196,4 @@ const styles = StyleSheet.create({
   textSecondary: {},
 });
 
-// Create a wrapper component that can be enhanced with HOCs
-const ButtonWrapper = (props: any) => <ButtonComponent {...props} />;
-
-export default withSpacing(ButtonWrapper);
+export default withSpacing(Button);

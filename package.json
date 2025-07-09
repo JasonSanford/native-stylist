@@ -11,14 +11,10 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-native": ">=0.70.0"
-  },
   "author": "",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "@types/react": "^19.0.0",
+    "@types/react": "^18.3.2",
     "@types/react-native": "^0.73.0",
     "typescript": "^5.4.5"
   }
